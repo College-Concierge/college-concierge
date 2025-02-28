@@ -111,7 +111,7 @@ const Index = () => {
               <Card key={university.id} className="overflow-hidden card-shadow">
                 <div className="h-40 overflow-hidden">
                   <img 
-                    src={university.image} 
+                    src={university.imageUrl} 
                     alt={university.name}
                     className="w-full h-full object-cover"
                   />
