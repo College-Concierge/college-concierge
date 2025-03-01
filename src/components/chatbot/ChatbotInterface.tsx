@@ -16,7 +16,7 @@ type Message = {
 const initialMessages: Message[] = [
   {
     id: '1',
-    content: 'Hi there! I'm your College Concierge AI assistant. How can I help you find the perfect university or course today?',
+    content: 'Hi there! I\'m your College Concierge AI assistant. How can I help you find the perfect university or course today?',
     sender: 'bot',
     timestamp: new Date(),
   },
