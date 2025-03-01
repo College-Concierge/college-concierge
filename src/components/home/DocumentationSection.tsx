@@ -1,69 +1,126 @@
 
-import { Users, Map, FileText } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { User, Map, Layers, MessageSquare, ArrowRightLeft, Filter } from "lucide-react";
 
 const DocumentationSection = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
-    <section className="py-10 px-4 md:px-8 bg-muted/20">
+    <section className="py-16 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Project Phase 1 Documentation</h2>
-        </div>
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-3xl font-bold mb-4">Project Documentation</h2>
+          <p className="text-muted-foreground">
+            Explore our planning and design documents for the University & Course Discovery Platform
+          </p>
+        </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="hover:shadow-md transition-shadow">
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Users className="h-5 w-5 text-primary" />
-                </div>
-                <h3 className="font-semibold text-lg">User Personas</h3>
-              </div>
-              <p className="text-muted-foreground mb-4">
-                Detailed profiles of our target users to guide product development and feature prioritization.
-              </p>
-              <Button variant="outline" className="w-full" asChild>
-                <Link to="/user-personas">View User Personas</Link>
-              </Button>
-            </CardContent>
-          </Card>
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Phase 1: Planning & Discovery */}
+          <motion.div variants={itemVariants}>
+            <div className="p-6 bg-muted/30 rounded-lg">
+              <h3 className="text-xl font-semibold mb-4">Phase 1: Planning</h3>
+              <ul className="space-y-3">
+                <li>
+                  <Link to="/user-personas" className="flex items-center text-primary hover:underline">
+                    <User className="h-4 w-4 mr-2" />
+                    User Personas
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/user-journeys" className="flex items-center text-primary hover:underline">
+                    <Map className="h-4 w-4 mr-2" />
+                    User Journeys
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/wireframes" className="flex items-center text-primary hover:underline">
+                    <Layers className="h-4 w-4 mr-2" />
+                    Wireframes
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </motion.div>
           
-          <Card className="hover:shadow-md transition-shadow">
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center">
-                  <Map className="h-5 w-5 text-accent" />
-                </div>
-                <h3 className="font-semibold text-lg">User Journeys</h3>
-              </div>
-              <p className="text-muted-foreground mb-4">
-                Step-by-step paths users take to accomplish their goals on our platform.
-              </p>
-              <Button variant="outline" className="w-full" asChild>
-                <Link to="/user-journeys">View User Journeys</Link>
-              </Button>
-            </CardContent>
-          </Card>
+          {/* Phase 2: Design & Interactive Prototypes */}
+          <motion.div variants={itemVariants}>
+            <div className="p-6 bg-accent/10 rounded-lg">
+              <h3 className="text-xl font-semibold mb-4">Phase 2: Prototypes</h3>
+              <ul className="space-y-3">
+                <li>
+                  <Link to="/prototype/chatbot" className="flex items-center text-primary hover:underline">
+                    <MessageSquare className="h-4 w-4 mr-2" />
+                    AI Chatbot Interface
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/prototype/comparison" className="flex items-center text-primary hover:underline">
+                    <ArrowRightLeft className="h-4 w-4 mr-2" />
+                    Comparison Tool
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/prototype/filters" className="flex items-center text-primary hover:underline">
+                    <Filter className="h-4 w-4 mr-2" />
+                    Advanced Filters
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </motion.div>
           
-          <Card className="hover:shadow-md transition-shadow">
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-10 w-10 rounded-full bg-edu-teal/10 flex items-center justify-center">
-                  <FileText className="h-5 w-5 text-edu-teal" />
-                </div>
-                <h3 className="font-semibold text-lg">Wireframes</h3>
-              </div>
-              <p className="text-muted-foreground mb-4">
-                Visual representations of user interface layouts for key pages of the platform.
-              </p>
-              <Button variant="outline" className="w-full" asChild>
-                <Link to="/wireframes">View Wireframes</Link>
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
+          {/* Phase 3: Development Progress */}
+          <motion.div variants={itemVariants}>
+            <div className="p-6 bg-muted/30 rounded-lg">
+              <h3 className="text-xl font-semibold mb-4">Phase 3: Development</h3>
+              <ul className="space-y-3">
+                <li className="text-muted-foreground flex items-center">
+                  <span className="inline-block w-4 h-4 rounded-full bg-muted-foreground/20 mr-2"></span>
+                  Backend Setup (Coming Soon)
+                </li>
+                <li className="text-muted-foreground flex items-center">
+                  <span className="inline-block w-4 h-4 rounded-full bg-muted-foreground/20 mr-2"></span>
+                  Data Integration (Coming Soon)
+                </li>
+                <li className="text-muted-foreground flex items-center">
+                  <span className="inline-block w-4 h-4 rounded-full bg-muted-foreground/20 mr-2"></span>
+                  Frontend Components (Coming Soon)
+                </li>
+              </ul>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
