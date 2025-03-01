@@ -302,7 +302,7 @@ const ChatbotInterface = () => {
                       )}
                       
                       <CardFooter className="p-4 border-t">
-                        <form onSubmit={handleSearchSubmit} className="flex w-full space-x-2">
+                        <form onSubmit={handleSendMessage} className="flex w-full space-x-2">
                           <div className="flex space-x-2">
                             <Button type="button" size="icon" variant="outline" onClick={handleFileUpload}>
                               <Paperclip className="h-4 w-4" />
