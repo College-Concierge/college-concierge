@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { 
   ArrowRightLeft, 
@@ -45,9 +44,8 @@ const criteriaOptions = [
   { id: 'hostels', label: 'Hostel Facilities' },
 ];
 
-// Update the University type to match the imported type but with additional properties
 type University = {
-  id: number; // Changed from string to number to match the imported type
+  id: number;
   name: string;
   type: string;
   location: string;
@@ -71,14 +69,12 @@ const ComparisonToolPrototype = () => {
   const [selectedCriteria, setSelectedCriteria] = useState<string[]>(['ranking', 'fees', 'placement']);
   const [expandedCriteria, setExpandedCriteria] = useState<Record<string, boolean>>({});
 
-  // Function to simulate search
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchTerm.trim()) return;
     
     setIsSearching(true);
     
-    // Simulate API call with delay
     setTimeout(() => {
       const results = universities.filter(uni => 
         uni.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -91,7 +87,6 @@ const ComparisonToolPrototype = () => {
 
   const addUniversity = (university: ImportedUniversity) => {
     if (selectedUniversities.length < 3 && !selectedUniversities.some(uni => uni.id === university.id)) {
-      // Add mock data for comparison criteria
       const enhancedUniversity: University = {
         ...university,
         fees: `₹${Math.floor(Math.random() * 500000) + 100000}/year`,
@@ -110,7 +105,7 @@ const ComparisonToolPrototype = () => {
     }
   };
 
-  const removeUniversity = (id: number) => { // Changed from string to number
+  const removeUniversity = (id: number) => {
     setSelectedUniversities(selectedUniversities.filter(uni => uni.id !== id));
   };
 
@@ -129,37 +124,33 @@ const ComparisonToolPrototype = () => {
     });
   };
 
-  // Helper to determine which university is better for a criterion
   const getBestForCriterion = (criteriaId: string) => {
     if (selectedUniversities.length < 2) return null;
     
-    let bestUniId: string | null = null;
+    let bestUniId: number | null = null;
     
     switch(criteriaId) {
       case 'ranking':
         bestUniId = selectedUniversities.reduce((best, uni) => 
           !best || uni.ranking < selectedUniversities.find(u => u.id === best)!.ranking ? uni.id : best
-        , null as string | null);
+        , null as number | null);
         break;
       case 'fees':
-        // Lower fees is better (simple comparison for prototype)
         bestUniId = selectedUniversities.reduce((best, uni) => {
           if (!best) return uni.id;
           const bestFee = parseInt(selectedUniversities.find(u => u.id === best)!.fees!.replace(/[^\d]/g, ''));
           const currentFee = parseInt(uni.fees!.replace(/[^\d]/g, ''));
           return currentFee < bestFee ? uni.id : best;
-        }, null as string | null);
+        }, null as number | null);
         break;
       case 'placement':
-        // Higher placement rate is better
         bestUniId = selectedUniversities.reduce((best, uni) => {
           if (!best) return uni.id;
           const bestRate = parseInt(selectedUniversities.find(u => u.id === best)!.placement!);
           const currentRate = parseInt(uni.placement!);
           return currentRate > bestRate ? uni.id : best;
-        }, null as string | null);
+        }, null as number | null);
         break;
-      // For other numeric criteria, higher is generally better
       case 'faculty':
       case 'infrastructure':
       case 'research':
@@ -169,25 +160,23 @@ const ComparisonToolPrototype = () => {
           const bestValue = selectedUniversities.find(u => u.id === best)![criteriaId as keyof University] as number;
           const currentValue = uni[criteriaId as keyof University] as number;
           return currentValue > bestValue ? uni.id : best;
-        }, null as string | null);
+        }, null as number | null);
         break;
       case 'courses':
-        // More courses might be better
         bestUniId = selectedUniversities.reduce((best, uni) => {
           if (!best) return uni.id;
           const bestValue = selectedUniversities.find(u => u.id === best)!.courses!;
           const currentValue = uni.courses!;
           return currentValue > bestValue ? uni.id : best;
-        }, null as string | null);
+        }, null as number | null);
         break;
       case 'student_ratio':
-        // Lower student-faculty ratio is better (e.g., 1:10 is better than 1:20)
         bestUniId = selectedUniversities.reduce((best, uni) => {
           if (!best) return uni.id;
           const bestRatio = parseInt(selectedUniversities.find(u => u.id === best)!.student_ratio!.split(':')[1]);
           const currentRatio = parseInt(uni.student_ratio!.split(':')[1]);
           return currentRatio < bestRatio ? uni.id : best;
-        }, null as string | null);
+        }, null as number | null);
         break;
       default:
         return null;
