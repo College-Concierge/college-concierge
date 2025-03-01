@@ -1,8 +1,9 @@
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { User, Map, Layers, MessageSquare, ArrowRightLeft, Filter, ChevronLeft } from "lucide-react";
+import { User, Map, Layers, MessageSquare, ArrowRightLeft, Filter, ChevronLeft, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CustomNavbar from "@/components/CustomNavbar";
 
 const ProjectDocumentation = () => {
   const containerVariants = {
@@ -28,6 +29,7 @@ const ProjectDocumentation = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <CustomNavbar />
       <div className="container mx-auto py-8 px-4">
         <Button variant="ghost" size="sm" asChild className="mb-6">
           <Link to="/" className="flex items-center">
@@ -43,9 +45,65 @@ const ProjectDocumentation = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl font-bold mb-4">Project Documentation</h2>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Explore our planning and design documents for the University & Course Discovery Platform
           </p>
+        </motion.div>
+        
+        {/* Interactive Prototypes Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mb-12"
+        >
+          <h3 className="text-xl font-semibold mb-6 text-center">Interactive Prototypes</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Link to="/prototype/chatbot" className="group">
+              <div className="border rounded-lg overflow-hidden bg-accent/5 hover:bg-accent/10 transition-colors h-full">
+                <div className="p-6">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                    <MessageSquare className="h-6 w-6 text-primary" />
+                  </div>
+                  <h4 className="text-lg font-medium mb-2 group-hover:text-primary transition-colors">AI Chatbot Interface</h4>
+                  <p className="text-muted-foreground mb-4">Experience our AI assistant that helps students find universities and courses based on their preferences.</p>
+                  <span className="text-primary flex items-center text-sm font-medium">
+                    Try it now <ExternalLink className="ml-1 h-3 w-3" />
+                  </span>
+                </div>
+              </div>
+            </Link>
+            
+            <Link to="/prototype/comparison" className="group">
+              <div className="border rounded-lg overflow-hidden bg-accent/5 hover:bg-accent/10 transition-colors h-full">
+                <div className="p-6">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                    <ArrowRightLeft className="h-6 w-6 text-primary" />
+                  </div>
+                  <h4 className="text-lg font-medium mb-2 group-hover:text-primary transition-colors">Comparison Tool</h4>
+                  <p className="text-muted-foreground mb-4">Compare different universities side-by-side on various parameters to make informed decisions.</p>
+                  <span className="text-primary flex items-center text-sm font-medium">
+                    Try it now <ExternalLink className="ml-1 h-3 w-3" />
+                  </span>
+                </div>
+              </div>
+            </Link>
+            
+            <Link to="/prototype/filters" className="group">
+              <div className="border rounded-lg overflow-hidden bg-accent/5 hover:bg-accent/10 transition-colors h-full">
+                <div className="p-6">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                    <Filter className="h-6 w-6 text-primary" />
+                  </div>
+                  <h4 className="text-lg font-medium mb-2 group-hover:text-primary transition-colors">Advanced Filters</h4>
+                  <p className="text-muted-foreground mb-4">Use our powerful filtering system to narrow down universities based on multiple criteria.</p>
+                  <span className="text-primary flex items-center text-sm font-medium">
+                    Try it now <ExternalLink className="ml-1 h-3 w-3" />
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </div>
         </motion.div>
         
         <motion.div 

@@ -10,7 +10,7 @@ import UserPersonas from "./pages/UserPersonas";
 import UserJourneys from "./pages/UserJourneys";
 import Wireframes from "./pages/Wireframes";
 import ProjectDocumentation from "./pages/ProjectDocumentation";
-import ChatbotInterface from "./components/chatbot/ChatbotInterface";
+import ChatbotDemo from "./pages/ChatbotDemo";
 import ComparisonToolPrototype from "./components/comparison/ComparisonToolPrototype";
 import FiltersPrototype from "./components/filters/FiltersPrototype";
 
@@ -29,7 +29,7 @@ const App = () => (
           <Route path="/user-journeys" element={<UserJourneys />} />
           <Route path="/wireframes" element={<Wireframes />} />
           <Route path="/project-documentation" element={<ProjectDocumentation />} />
-          <Route path="/prototype/chatbot" element={<ChatbotInterface />} />
+          <Route path="/prototype/chatbot" element={<ChatbotDemo />} />
           <Route path="/prototype/comparison" element={<ComparisonToolPrototype />} />
           <Route path="/prototype/filters" element={<FiltersPrototype />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
