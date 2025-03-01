@@ -22,7 +22,7 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { universities } from '@/data/universities';
+import { universities, University as ImportedUniversity } from '@/data/universities';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -45,8 +45,9 @@ const criteriaOptions = [
   { id: 'hostels', label: 'Hostel Facilities' },
 ];
 
+// Update the University type to match the imported type but with additional properties
 type University = {
-  id: string;
+  id: number; // Changed from string to number to match the imported type
   name: string;
   type: string;
   location: string;
@@ -65,7 +66,7 @@ type University = {
 const ComparisonToolPrototype = () => {
   const [selectedUniversities, setSelectedUniversities] = useState<University[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState<University[]>([]);
+  const [searchResults, setSearchResults] = useState<ImportedUniversity[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [selectedCriteria, setSelectedCriteria] = useState<string[]>(['ranking', 'fees', 'placement']);
   const [expandedCriteria, setExpandedCriteria] = useState<Record<string, boolean>>({});
@@ -88,10 +89,10 @@ const ComparisonToolPrototype = () => {
     }, 800);
   };
 
-  const addUniversity = (university: University) => {
+  const addUniversity = (university: ImportedUniversity) => {
     if (selectedUniversities.length < 3 && !selectedUniversities.some(uni => uni.id === university.id)) {
       // Add mock data for comparison criteria
-      const enhancedUniversity = {
+      const enhancedUniversity: University = {
         ...university,
         fees: `₹${Math.floor(Math.random() * 500000) + 100000}/year`,
         placement: `${Math.floor(Math.random() * 30) + 70}%`,
@@ -109,7 +110,7 @@ const ComparisonToolPrototype = () => {
     }
   };
 
-  const removeUniversity = (id: string) => {
+  const removeUniversity = (id: number) => { // Changed from string to number
     setSelectedUniversities(selectedUniversities.filter(uni => uni.id !== id));
   };
 
@@ -257,7 +258,7 @@ const ComparisonToolPrototype = () => {
                       size="sm" 
                       variant="outline"
                       onClick={() => addUniversity(uni)}
-                      disabled={selectedUniversities.some(selected => selected.id === uni.id) || selectedUniversities.length >=.3}
+                      disabled={selectedUniversities.some(selected => selected.id === uni.id) || selectedUniversities.length >= 3}
                     >
                       <Plus className="h-4 w-4 mr-1" />
                       Add
