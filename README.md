@@ -149,7 +149,7 @@
 
 ## Current Project Status
 
-Only **Phase 1** (Discovery & Planning) has been partially completed. I'm a solo developer, and this project is just at the beginning of its journey. If anyone is interested in contributing or helping build this platform, please check out the [masterplan.md](masterplan.md) file for the full vision and roadmap, and feel free to get in touch!
+Only **Phase 2 (Design & Prototyping*l)** has been partially completed. I'm a solo developer, and this project is just at the beginning of its journey. If anyone is interested in contributing or helping build this platform, please check out the [masterplan.md](masterplan.md) file for the full vision and roadmap, and feel free to get in touch!
 
 ---
 
