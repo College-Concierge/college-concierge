@@ -132,7 +132,7 @@
    - Finalize requirements; create user personas.
    - Develop wireframes and user journey maps.
 
-2. **Phase 2 - Design & Prototyping**
+2. **Phase 2 - Design & Prototyping** (Currently)
    - Build high-fidelity UI designs; validate through usability testing.
 
 3. **Phase 3 - Backend Development**
