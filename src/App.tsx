@@ -14,6 +14,7 @@ import ProjectDocumentation from "./pages/ProjectDocumentation";
 import ChatbotDemo from "./pages/ChatbotDemo";
 import ComparisonToolPrototype from "./components/comparison/ComparisonToolPrototype";
 import FiltersPrototype from "./components/filters/FiltersPrototype";
+import UniversityDetail from "./pages/UniversityDetail";
 
 // Create a new query client instance
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/university/:id" element={<UniversityDetail />} />
             <Route path="/user-personas" element={<UserPersonas />} />
             <Route path="/user-journeys" element={<UserJourneys />} />
             <Route path="/wireframes" element={<Wireframes />} />

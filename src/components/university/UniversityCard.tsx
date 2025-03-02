@@ -7,6 +7,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { University } from '@/data/universityInterface';
 import { toast } from "sonner";
+import { Link } from 'react-router-dom';
 
 interface UniversityCardProps {
   university: University;
@@ -73,8 +74,11 @@ const UniversityCard = ({ university }: UniversityCardProps) => {
             variant="outline" 
             className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
             onClick={handleClick}
+            asChild
           >
-            View Details <ChevronRight className="ml-1 h-4 w-4" />
+            <Link to={`/university/${university.id}`}>
+              View Details <ChevronRight className="ml-1 h-4 w-4" />
+            </Link>
           </Button>
         </CardFooter>
       </Card>
