@@ -1,13 +1,15 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { universities } from '@/data/universities';
 import { ChevronRight, Search, MapPin, Building, Award, Users, BadgeCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { toast } from "sonner";
 
 const ExploreUniversitiesSection = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -29,6 +31,13 @@ const ExploreUniversitiesSection = () => {
     })
     .slice(0, 6);
   
+  const handleUniversityClick = (universityName: string) => {
+    toast.success(`University selected`, {
+      description: `You've selected ${universityName}. View details for more information.`,
+      duration: 3000
+    });
+  };
+
   return (
     <section className="py-16 px-4 md:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
@@ -67,61 +76,78 @@ const ExploreUniversitiesSection = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredUniversities.map((university) => (
-              <motion.div
-                key={university.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              >
-                <Card className="h-full flex flex-col overflow-hidden group hover:shadow-md transition-all">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={university.imageUrl} 
-                      alt={university.name} 
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/30 flex items-end">
-                      <div className="p-4 w-full text-white">
-                        <Badge className="mb-2" variant={university.isPopular ? "default" : "secondary"}>
-                          {university.isPopular ? "Popular" : `Rank #${university.ranking}`}
-                        </Badge>
-                        <h3 className="text-lg font-semibold line-clamp-2">{university.name}</h3>
+            {filteredUniversities.length > 0 ? (
+              filteredUniversities.map((university) => (
+                <motion.div
+                  key={university.id}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                >
+                  <Card className="h-full flex flex-col overflow-hidden group hover:shadow-md transition-all border border-muted">
+                    <div className="relative h-48 overflow-hidden">
+                      <img 
+                        src={university.imageUrl} 
+                        alt={university.name} 
+                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-black/30 flex items-end">
+                        <div className="p-4 w-full text-white">
+                          <Badge className="mb-2" variant={university.isPopular ? "default" : "secondary"}>
+                            {university.isPopular ? "Popular" : `Rank #${university.ranking}`}
+                          </Badge>
+                          <h3 className="text-lg font-semibold line-clamp-2">{university.name}</h3>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  
-                  <CardContent className="flex-grow py-4">
-                    <div className="space-y-2">
-                      <div className="flex items-center text-sm">
-                        <MapPin className="h-4 w-4 mr-2 text-muted-foreground" />
-                        <span>{university.location}</span>
+                    
+                    <CardContent className="flex-grow py-4">
+                      <div className="space-y-2">
+                        <div className="flex items-center text-sm">
+                          <MapPin className="h-4 w-4 mr-2 text-muted-foreground" />
+                          <span>{university.location}</span>
+                        </div>
+                        <div className="flex items-center text-sm">
+                          <Building className="h-4 w-4 mr-2 text-muted-foreground" />
+                          <span>{university.type} University, est. {university.established}</span>
+                        </div>
+                        <div className="flex items-center text-sm">
+                          <Award className="h-4 w-4 mr-2 text-muted-foreground" />
+                          <span>{university.accreditation}</span>
+                        </div>
+                        <div className="flex items-center text-sm">
+                          <Users className="h-4 w-4 mr-2 text-muted-foreground" />
+                          <span>{university.views.toLocaleString()} views</span>
+                        </div>
                       </div>
-                      <div className="flex items-center text-sm">
-                        <Building className="h-4 w-4 mr-2 text-muted-foreground" />
-                        <span>{university.type} University, est. {university.established}</span>
-                      </div>
-                      <div className="flex items-center text-sm">
-                        <Award className="h-4 w-4 mr-2 text-muted-foreground" />
-                        <span>{university.accreditation}</span>
-                      </div>
-                      <div className="flex items-center text-sm">
-                        <Users className="h-4 w-4 mr-2 text-muted-foreground" />
-                        <span>{university.views.toLocaleString()} views</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                  
-                  <CardFooter className="pt-0">
-                    <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                      View Details <ChevronRight className="ml-1 h-4 w-4" />
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </motion.div>
-            ))}
+                    </CardContent>
+                    
+                    <CardFooter className="pt-0">
+                      <Button 
+                        variant="outline" 
+                        className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                        onClick={() => handleUniversityClick(university.name)}
+                      >
+                        View Details <ChevronRight className="ml-1 h-4 w-4" />
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </motion.div>
+              ))
+            ) : (
+              <div className="col-span-1 md:col-span-2 lg:col-span-3 py-12 text-center">
+                <p className="text-muted-foreground">No universities found matching your search criteria.</p>
+                <Button 
+                  variant="outline" 
+                  className="mt-4"
+                  onClick={() => setSearchTerm('')}
+                >
+                  Clear Search
+                </Button>
+              </div>
+            )}
           </div>
           
           <div className="flex justify-center mt-8">
