@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Filter, X, ChevronDown, ChevronUp, Sliders, Search, Star, MapPin, Buildings, BookOpen, GraduationCap, Info, BookOpen as Course, ArrowUpDown, Check } from 'lucide-react';
+import { Filter, X, ChevronDown, ChevronUp, Sliders, Search, Star, MapPin, Building, BookOpen, GraduationCap, Info, BookOpen as Course, ArrowUpDown, Check, Loader } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { 
@@ -624,7 +623,7 @@ const FiltersPrototype = () => {
               {isLoading ? (
                 <div className="py-12 flex justify-center items-center">
                   <div className="flex flex-col items-center">
-                    <Loader2 className="h-8 w-8 animate-spin mb-2 text-primary" />
+                    <Loader className="h-8 w-8 animate-spin mb-2 text-primary" />
                     <p className="text-muted-foreground">Loading results...</p>
                   </div>
                 </div>
@@ -678,7 +677,7 @@ const FiltersPrototype = () => {
                                     
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-4">
                                       <div className="flex items-center text-sm">
-                                        <Buildings className="h-4 w-4 mr-2 text-muted-foreground" />
+                                        <Building className="h-4 w-4 mr-2 text-muted-foreground" />
                                         <span>{university.type}</span>
                                       </div>
                                       <div className="flex items-center text-sm">

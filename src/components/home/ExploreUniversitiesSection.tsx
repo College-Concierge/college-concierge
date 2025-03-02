@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { universities } from '@/data/universities';
-import { ChevronRight, Search, MapPin, Buildings, Award, Users, BadgeCheck } from 'lucide-react';
+import { ChevronRight, Search, MapPin, Building, Award, Users, BadgeCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -14,7 +13,6 @@ const ExploreUniversitiesSection = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState('popular');
   
-  // Filter and sort universities based on search term and active tab
   const filteredUniversities = universities
     .filter(uni => 
       uni.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -102,7 +100,7 @@ const ExploreUniversitiesSection = () => {
                         <span>{university.location}</span>
                       </div>
                       <div className="flex items-center text-sm">
-                        <Buildings className="h-4 w-4 mr-2 text-muted-foreground" />
+                        <Building className="h-4 w-4 mr-2 text-muted-foreground" />
                         <span>{university.type} University, est. {university.established}</span>
                       </div>
                       <div className="flex items-center text-sm">
