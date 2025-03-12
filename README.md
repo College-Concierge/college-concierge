@@ -213,13 +213,9 @@ GitHub: [anugrahjames-official](https://github.com/anugrahjames-official)
 If you find my projects helpful and wish to support my work, consider sponsoring me through the following methods:
 
 - **GitHub Sponsors**: [Sponsor me](https://github.com/sponsors/anugrahjames-official)
-- **UPI**: `anugrahjamesofficial@axl`l
+- **UPI**: `anugrahjamesofficial@axl`
 - **Bank Transfer**:
   - **Account Holder Name**: Anugrah James
   - **Account Number**: 17110100109931
   - **Bank Name**: Federal Bank Alakode
   - **IFSC Code**: FDRL0001711
-
-  <a href="upi://pay?pa=anugrahjamesofficial@axl&pn=Anugrah%20James" target="_blank">
-  <img src="https://example.com/upi_button_image.png" alt="Pay via UPI" style="width:200px;height:50px;">
-</a>
