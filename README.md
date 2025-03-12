@@ -219,5 +219,7 @@ If you find my projects helpful and wish to support my work, consider sponsoring
   - **Account Number**: 17110100109931
   - **Bank Name**: Federal Bank Alakode
   - **IFSC Code**: FDRL0001711
- 
-  <a href="upi://pay?pa=anugrahjamesofficial@axl&pn=ANUGRAH JAMES&cu=INR" id="__UPI_BUTTON__" style="background: #ff912f;border: 2px solid #8a4100;padding: 10px;text-decoration: none;color: white;font-size: larger;border-radius: 10px;">Pay using UPI</a>
+
+  <a href="upi://pay?pa=anugrahjamesofficial@axl&pn=Anugrah%20James" target="_blank">
+  <img src="https://example.com/upi_button_image.png" alt="Pay via UPI" style="width:200px;height:50px;">
+</a>
