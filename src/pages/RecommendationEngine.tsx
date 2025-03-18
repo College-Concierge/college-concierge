@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Sparkles, CheckCircle2, BookOpen, Clock, Coins, Briefcase, GraduationCap, Medal, Building } from 'lucide-react';
@@ -821,4 +822,97 @@ const UserDetailsStep = ({
         <p className="font-medium">Compare & Apply from 100+</p>
         <div className="flex justify-center gap-2 mt-2 mb-4">
           <img src="https://via.placeholder.com/80x40?text=Univ1" alt="University" className="h-10 border rounded" />
-          <img src="https://
+          <img src="https://via.placeholder.com/80x40?text=Univ2" alt="University" className="h-10 border rounded" />
+          <img src="https://via.placeholder.com/80x40?text=Univ3" alt="University" className="h-10 border rounded" />
+        </div>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <label htmlFor="fullName" className="block text-sm font-medium">Full Name</label>
+          <input
+            id="fullName"
+            type="text"
+            className="w-full p-2 border rounded-md"
+            value={userDetails.fullName || ''}
+            onChange={(e) => onChange('fullName', e.target.value)}
+            placeholder="Your full name"
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <label htmlFor="gender" className="block text-sm font-medium">Gender</label>
+          <select
+            id="gender"
+            className="w-full p-2 border rounded-md"
+            value={userDetails.gender || ''}
+            onChange={(e) => onChange('gender', e.target.value)}
+          >
+            <option value="">Select gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+            <option value="prefer_not_to_say">Prefer not to say</option>
+          </select>
+        </div>
+        
+        <div className="space-y-2">
+          <label htmlFor="email" className="block text-sm font-medium">Email Address</label>
+          <input
+            id="email"
+            type="email"
+            className="w-full p-2 border rounded-md"
+            value={userDetails.email || ''}
+            onChange={(e) => onChange('email', e.target.value)}
+            placeholder="you@example.com"
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <label htmlFor="mobile" className="block text-sm font-medium">Mobile Number</label>
+          <div className="flex">
+            <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-l-md">
+              +91
+            </span>
+            <input
+              id="mobile"
+              type="tel"
+              className="w-full p-2 border border-l-0 rounded-r-md"
+              value={userDetails.mobile || ''}
+              onChange={(e) => onChange('mobile', e.target.value)}
+              placeholder="10-digit mobile number"
+            />
+          </div>
+        </div>
+        
+        <div className="space-y-2">
+          <label htmlFor="state" className="block text-sm font-medium">State</label>
+          <input
+            id="state"
+            type="text"
+            className="w-full p-2 border rounded-md"
+            value={userDetails.state || ''}
+            onChange={(e) => onChange('state', e.target.value)}
+            placeholder="Your state"
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <label htmlFor="city" className="block text-sm font-medium">City</label>
+          <input
+            id="city"
+            type="text"
+            className="w-full p-2 border rounded-md"
+            value={userDetails.city || ''}
+            onChange={(e) => onChange('city', e.target.value)}
+            placeholder="Your city"
+          />
+        </div>
+      </div>
+      
+      <div className="mt-6 text-sm text-center text-muted-foreground">
+        By submitting, you agree with our <a href="#" className="underline">Terms & Conditions</a> and <a href="#" className="underline">Privacy Policy</a>.
+      </div>
+    </div>
+  );
+};
