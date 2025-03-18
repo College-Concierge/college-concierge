@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Sparkles, CheckCircle2, BookOpen, Clock, Coins, Briefcase, GraduationCap, Medal, Building } from 'lucide-react';
@@ -15,7 +14,18 @@ import ProgressBar from '@/components/recommendation/ProgressBar';
 import { useRecommendationEngine } from '@/hooks/useRecommendationEngine';
 import Footer from '@/components/home/Footer';
 
+// Define the interface for userDetails to fix type errors
+interface UserDetails {
+  fullName: string;
+  gender: string;
+  email: string;
+  mobile: string;
+  state: string;
+  city: string;
+}
+
 const RecommendationEngine = () => {
+  
   const { 
     currentStep,
     totalSteps,
@@ -793,7 +803,14 @@ const ScholarshipStep = ({ selectedValue, onChange }) => {
   );
 };
 
-const UserDetailsStep = ({ userDetails = {}, onChange }) => {
+// Fixed UserDetailsStep with proper TypeScript typing
+const UserDetailsStep = ({ 
+  userDetails, 
+  onChange 
+}: { 
+  userDetails: UserDetails; 
+  onChange: (field: keyof UserDetails, value: string) => void 
+}) => {
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-6 text-center">
@@ -804,116 +821,4 @@ const UserDetailsStep = ({ userDetails = {}, onChange }) => {
         <p className="font-medium">Compare & Apply from 100+</p>
         <div className="flex justify-center gap-2 mt-2 mb-4">
           <img src="https://via.placeholder.com/80x40?text=Univ1" alt="University" className="h-10 border rounded" />
-          <img src="https://via.placeholder.com/80x40?text=Univ2" alt="University" className="h-10 border rounded" />
-          <img src="https://via.placeholder.com/80x40?text=Univ3" alt="University" className="h-10 border rounded" />
-          <img src="https://via.placeholder.com/80x40?text=Univ4" alt="University" className="h-10 border rounded" />
-        </div>
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-          <input 
-            type="text"
-            className="w-full p-2 border rounded-md"
-            value={userDetails.fullName || ''}
-            onChange={(e) => onChange('fullName', e.target.value)}
-            placeholder="Your full name"
-          />
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Gender</label>
-          <select
-            className="w-full p-2 border rounded-md"
-            value={userDetails.gender || ''}
-            onChange={(e) => onChange('gender', e.target.value)}
-          >
-            <option value="">Select gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        
-        <div className="relative">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-          <input 
-            type="email"
-            className="w-full p-2 border rounded-md"
-            value={userDetails.email || ''}
-            onChange={(e) => onChange('email', e.target.value)}
-            placeholder="Your email address"
-          />
-          <span className="absolute right-2 bottom-2 text-xs text-green-600">We don't spam</span>
-        </div>
-        
-        <div className="relative">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
-          <div className="flex">
-            <div className="bg-muted p-2 border rounded-l-md flex items-center">
-              <span className="flex items-center">
-                <span className="mr-1">🇮🇳</span> +91
-              </span>
-            </div>
-            <input 
-              type="tel"
-              className="w-full p-2 border border-l-0 rounded-r-md"
-              value={userDetails.mobile || ''}
-              onChange={(e) => onChange('mobile', e.target.value)}
-              placeholder="Your mobile number"
-            />
-          </div>
-          <span className="absolute right-2 bottom-2 text-xs text-green-600">We don't spam</span>
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">State</label>
-          <select
-            className="w-full p-2 border rounded-md"
-            value={userDetails.state || ''}
-            onChange={(e) => onChange('state', e.target.value)}
-          >
-            <option value="">Select state</option>
-            <option value="delhi">Delhi</option>
-            <option value="maharashtra">Maharashtra</option>
-            <option value="karnataka">Karnataka</option>
-            <option value="tamil_nadu">Tamil Nadu</option>
-            <option value="kerala">Kerala</option>
-          </select>
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
-          <select
-            className="w-full p-2 border rounded-md"
-            value={userDetails.city || ''}
-            onChange={(e) => onChange('city', e.target.value)}
-          >
-            <option value="">Select city</option>
-            <option value="mumbai">Mumbai</option>
-            <option value="delhi">Delhi</option>
-            <option value="bangalore">Bangalore</option>
-            <option value="chennai">Chennai</option>
-            <option value="kochi">Kochi</option>
-          </select>
-        </div>
-      </div>
-      
-      <div className="mt-6 border rounded-md p-2 bg-gray-50">
-        <div className="flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-          </svg>
-          <span className="text-sm text-green-600">Your personal information is secure with us</span>
-        </div>
-      </div>
-      
-      <div className="mt-4 text-center">
-        <p className="text-sm">
-          By proceeding, you agree to our Terms of Service and Privacy Policy.
-        </p>
-      </div>
-    </div>
-  );
-};
+          <img src="https://
