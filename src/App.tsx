@@ -15,6 +15,7 @@ import ChatbotDemo from "./pages/ChatbotDemo";
 import ComparisonToolPrototype from "./components/comparison/ComparisonToolPrototype";
 import FiltersPrototype from "./components/filters/FiltersPrototype";
 import UniversityDetail from "./pages/UniversityDetail";
+import RecommendationEngine from "./pages/RecommendationEngine";
 
 // Create a new query client instance
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/university/:id" element={<UniversityDetail />} />
+            <Route path="/recommendations" element={<RecommendationEngine />} />
             <Route path="/user-personas" element={<UserPersonas />} />
             <Route path="/user-journeys" element={<UserJourneys />} />
             <Route path="/wireframes" element={<Wireframes />} />
