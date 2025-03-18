@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { MessageSquare, ArrowRightLeft, Filter, FileText, Users, Map, Layers, ChevronDown } from "lucide-react";
+import { MessageSquare, ArrowRightLeft, Filter, FileText, Users, Map, Layers, ChevronDown, Sparkles } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -88,6 +88,14 @@ const CustomNavbar = () => {
         </nav>
         
         <div className="flex items-center gap-2">
+          {/* AI Recommendations Button - Always visible */}
+          <Button size="sm" className="bg-gradient-to-r from-purple-600 to-blue-500 text-white hover:from-purple-700 hover:to-blue-600" asChild>
+            <Link to="/recommendations" className="flex items-center gap-1.5">
+              <Sparkles className="h-3.5 w-3.5" />
+              Find Your Match
+            </Link>
+          </Button>
+          
           <Button variant="outline" size="sm" asChild className="hidden sm:flex">
             <Link to="/signup">Sign Up</Link>
           </Button>

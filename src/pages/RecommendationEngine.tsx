@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Sparkles, CheckCircle2, BookOpen, Clock, Coins, Briefcase, GraduationCap, Medal, Building } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Sparkles, CheckCircle2, BookOpen, Clock, Coins, Briefcase, GraduationCap, Medal, Building, School, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
@@ -272,30 +271,47 @@ const EducationLevelStep = ({ selectedValue, onChange }) => {
 
 const CourseInterestStep = ({ selectedValue, onChange }) => {
   const options = [
-    { value: 'bca', label: 'Online BCA', trending: true },
-    { value: 'bba', label: 'Online BBA' },
-    { value: 'bcom', label: 'Online B.Com' },
-    { value: 'btech_working', label: 'B.Tech for Working Professionals' },
-    { value: 'bca_mca', label: 'BCA+MCA Integrated', demand: true },
-    { value: 'bba_mba', label: 'BBA+MBA Integrated', demand: true },
-    { value: 'bcom_mba', label: 'B.Com+MBA Integrated', demand: true },
-    { value: 'mba_diploma', label: 'Online MBA after Diploma', new: true },
-    { value: 'bsc', label: 'Online B.Sc' },
-    { value: 'ba', label: 'Online BA' },
+    { value: 'bca', label: 'BCA', trending: true, isPrimary: false, isOnline: false },
+    { value: 'bba', label: 'BBA', isPrimary: false, isOnline: false },
+    { value: 'bcom', label: 'B.Com', isPrimary: false, isOnline: false },
+    { value: 'btech', label: 'B.Tech', isPrimary: true, isOnline: false },
+    { value: 'mca', label: 'MCA', demand: true, isPrimary: false, isOnline: false },
+    { value: 'mba', label: 'MBA', demand: true, isPrimary: false, isOnline: false },
+    { value: 'mcom', label: 'M.Com', isPrimary: false, isOnline: false },
+    { value: 'mtech', label: 'M.Tech', new: true, isPrimary: false, isOnline: false },
+    { value: 'bsc', label: 'B.Sc', isPrimary: false, isOnline: false },
+    { value: 'ba', label: 'BA', isPrimary: false, isOnline: false },
+    { value: 'online_bca', label: 'Online BCA', isOnline: true },
+    { value: 'online_bba', label: 'Online BBA', isOnline: true },
+    { value: 'online_mba', label: 'Online MBA', isOnline: true },
   ];
+
+  // Create tabs for Offline and Online courses
+  const offlineCourses = options.filter(option => !option.isOnline);
+  const onlineCourses = options.filter(option => option.isOnline);
+
+  const [courseMode, setCourseMode] = useState("offline");
 
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-6 text-center">
         Which course would you like to pursue?
       </h2>
+      
+      <Tabs defaultValue="offline" className="mb-6">
+        <TabsList className="grid grid-cols-2 mb-4">
+          <TabsTrigger value="offline" onClick={() => setCourseMode("offline")}>On-Campus Courses</TabsTrigger>
+          <TabsTrigger value="online" onClick={() => setCourseMode("online")}>Online Courses</TabsTrigger>
+        </TabsList>
+      </Tabs>
+      
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {options.map((option) => (
+        {(courseMode === "offline" ? offlineCourses : onlineCourses).map((option) => (
           <div
             key={option.value}
             className={`relative border rounded-lg p-4 cursor-pointer hover:border-primary transition-colors flex flex-col items-center justify-center text-center min-h-[120px] ${
               selectedValue === option.value ? 'border-primary bg-primary/10' : ''
-            }`}
+            } ${option.isPrimary ? 'border-indigo-500' : ''}`}
             onClick={() => onChange(option.value)}
           >
             {option.trending && (
@@ -313,7 +329,7 @@ const CourseInterestStep = ({ selectedValue, onChange }) => {
                 NEW
               </Badge>
             )}
-            <BookOpen className="h-8 w-8 mb-2 text-primary" />
+            <School className="h-8 w-8 mb-2 text-primary" />
             <div className="font-medium text-sm">{option.label}</div>
             {selectedValue === option.value && (
               <CheckCircle2 className="h-5 w-5 mt-2 text-primary" />
@@ -342,28 +358,19 @@ const SpecializationStep = ({ selectedValues = [], onChange }) => {
     { value: 'software_engineering', label: 'Software Engineering' },
     { value: 'multimedia', label: 'Multimedia and Animation' },
     { value: 'fullstack', label: 'Full Stack Development' },
+    { value: 'mechanical', label: 'Mechanical Engineering' },
+    { value: 'civil', label: 'Civil Engineering' },
+    { value: 'electrical', label: 'Electrical Engineering' },
+    { value: 'chemical', label: 'Chemical Engineering' },
   ];
 
   const filteredOptions = options.filter(option => 
     searchTerm === '' || option.label.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const toggleOption = (value) => {
-    if (value === 'not_decided') {
-      // If "Not decided yet" is selected, clear all other selections
-      onChange(['not_decided']);
-      return;
-    }
-    
-    // If any other option is selected, remove "Not decided yet"
-    let newValues;
-    if (selectedValues.includes(value)) {
-      newValues = selectedValues.filter(v => v !== value);
-    } else {
-      newValues = [...selectedValues.filter(v => v !== 'not_decided'), value];
-    }
-    
-    onChange(newValues.length > 0 ? newValues : []);
+  // Modify to select only one option at a time
+  const selectOption = (value) => {
+    onChange([value]);
   };
 
   return (
@@ -396,19 +403,18 @@ const SpecializationStep = ({ selectedValues = [], onChange }) => {
         </svg>
       </div>
       
-      <div className="flex flex-wrap gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
         {filteredOptions.map((option) => (
           <Badge
             key={option.value}
             variant={selectedValues.includes(option.value) ? "default" : "outline"}
             className={`px-3 py-2 cursor-pointer text-sm ${
-              option.primary ? 'border-green-500' : ''
+              option.primary ? 'border-indigo-500' : ''
             } ${
-              selectedValues.includes(option.value) && option.primary ? 'bg-green-500' : ''
+              selectedValues.includes(option.value) && option.primary ? 'bg-indigo-500' : ''
             }`}
-            onClick={() => toggleOption(option.value)}
+            onClick={() => selectOption(option.value)}
           >
-            {option.primary && <span className="mr-1">❤️</span>}
             {option.label}
             {selectedValues.includes(option.value) && (
               <CheckCircle2 className="h-3.5 w-3.5 ml-1.5" />
@@ -440,27 +446,30 @@ const StudyHoursStep = ({ selectedValue, onChange }) => {
             key={option.value}
             className={`relative border rounded-lg p-4 cursor-pointer hover:border-primary transition-colors min-w-[120px] text-center ${
               selectedValue === option.value ? 'border-primary bg-primary/10' : ''
-            } ${option.recommended ? 'border-green-500' : ''}`}
+            } ${option.recommended ? 'border-indigo-500' : ''}`}
             onClick={() => onChange(option.value)}
           >
             <div className="font-medium">{option.label}</div>
             {option.recommended && (
               <span className="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-xs text-white">
-                  ❤️
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500 text-xs text-white">
+                  <Award className="h-3 w-3" />
                 </span>
               </span>
+            )}
+            {selectedValue === option.value && (
+              <CheckCircle2 className="h-5 w-5 mx-auto mt-2 text-primary" />
             )}
           </div>
         ))}
       </div>
       
-      <div className="bg-muted/50 rounded-lg p-4 text-center">
-        <p className="text-sm text-green-600 font-medium">
-          College Vidya Advantage
+      <div className="bg-blue-50 rounded-lg p-4 text-center">
+        <p className="text-sm text-blue-600 font-medium">
+          CollegeConcierge Advantage
         </p>
         <p className="text-sm">
-          Dedicated CV Buddy & 100% Placement Support For You!
+          Find universities that match your study schedule preferences
         </p>
       </div>
     </div>
@@ -487,7 +496,7 @@ const BudgetStep = ({ selectedValue, onChange }) => {
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          EMI Options Also Available
+          EMI Options Available
         </Badge>
       </div>
       
@@ -497,27 +506,30 @@ const BudgetStep = ({ selectedValue, onChange }) => {
             key={option.value}
             className={`relative border rounded-lg p-4 cursor-pointer hover:border-primary transition-colors min-w-[140px] text-center ${
               selectedValue === option.value ? 'border-primary bg-primary/10' : ''
-            } ${option.recommended ? 'border-green-500' : ''}`}
+            } ${option.recommended ? 'border-indigo-500' : ''}`}
             onClick={() => onChange(option.value)}
           >
             <div className="font-medium">{option.label}</div>
             {option.recommended && (
               <span className="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-xs text-white">
-                  ❤️
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500 text-xs text-white">
+                  <Award className="h-3 w-3" />
                 </span>
               </span>
+            )}
+            {selectedValue === option.value && (
+              <CheckCircle2 className="h-5 w-5 mx-auto mt-2 text-primary" />
             )}
           </div>
         ))}
       </div>
       
-      <div className="bg-muted/50 rounded-lg p-4 text-center">
-        <p className="text-sm text-green-600 font-medium">
-          College Vidya Advantage
+      <div className="bg-blue-50 rounded-lg p-4 text-center">
+        <p className="text-sm text-blue-600 font-medium">
+          CollegeConcierge Advantage
         </p>
         <p className="text-sm">
-          Only certified expert will call you on 100% recorded line!
+          We'll match you with universities that fit your budget
         </p>
       </div>
     </div>
@@ -542,24 +554,27 @@ const FinancingStep = ({ selectedValue, onChange }) => {
             key={option.value}
             className={`relative border rounded-lg p-4 cursor-pointer hover:border-primary transition-colors min-w-[100px] text-center ${
               selectedValue === option.value ? 'border-primary bg-primary/10' : ''
-            } ${option.recommended ? 'border-green-500' : ''}`}
+            } ${option.recommended ? 'border-indigo-500' : ''}`}
             onClick={() => onChange(option.value)}
           >
             <div className="font-medium">{option.label}</div>
             {option.recommended && (
               <span className="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-xs text-white">
-                  ❤️
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500 text-xs text-white">
+                  <Award className="h-3 w-3" />
                 </span>
               </span>
+            )}
+            {selectedValue === option.value && (
+              <CheckCircle2 className="h-5 w-5 mx-auto mt-2 text-primary" />
             )}
           </div>
         ))}
       </div>
       
-      <div className="bg-muted/50 rounded-lg p-4 text-center">
-        <p className="text-sm text-green-600 font-medium">
-          College Vidya Advantage
+      <div className="bg-blue-50 rounded-lg p-4 text-center">
+        <p className="text-sm text-blue-600 font-medium">
+          CollegeConcierge Advantage
         </p>
         <p className="text-sm">
           Get relieved from financial stress with easy EMIs plans!
@@ -589,24 +604,27 @@ const SalaryPackageStep = ({ selectedValue, onChange }) => {
             key={option.value}
             className={`relative border rounded-lg p-4 cursor-pointer hover:border-primary transition-colors min-w-[140px] text-center ${
               selectedValue === option.value ? 'border-primary bg-primary/10' : ''
-            } ${option.recommended ? 'border-green-500' : ''}`}
+            } ${option.recommended ? 'border-indigo-500' : ''}`}
             onClick={() => onChange(option.value)}
           >
             <div className="font-medium">{option.label}</div>
             {option.recommended && (
               <span className="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-xs text-white">
-                  ❤️
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500 text-xs text-white">
+                  <Award className="h-3 w-3" />
                 </span>
               </span>
+            )}
+            {selectedValue === option.value && (
+              <CheckCircle2 className="h-5 w-5 mx-auto mt-2 text-primary" />
             )}
           </div>
         ))}
       </div>
       
-      <div className="bg-muted/50 rounded-lg p-4 text-center">
-        <p className="text-sm text-green-600 font-medium">
-          College Vidya Advantage
+      <div className="bg-blue-50 rounded-lg p-4 text-center">
+        <p className="text-sm text-blue-600 font-medium">
+          CollegeConcierge Advantage
         </p>
         <p className="text-sm">
           Free access to CV exclusive community & alumni network!
@@ -637,24 +655,27 @@ const QualificationStep = ({ selectedValue, onChange }) => {
             key={option.value}
             className={`relative border rounded-lg p-4 cursor-pointer hover:border-primary transition-colors min-w-[140px] text-center ${
               selectedValue === option.value ? 'border-primary bg-primary/10' : ''
-            } ${option.recommended ? 'border-green-500' : ''}`}
+            } ${option.recommended ? 'border-indigo-500' : ''}`}
             onClick={() => onChange(option.value)}
           >
             <div className="font-medium">{option.label}</div>
             {option.recommended && (
               <span className="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-xs text-white">
-                  ❤️
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500 text-xs text-white">
+                  <Award className="h-3 w-3" />
                 </span>
               </span>
+            )}
+            {selectedValue === option.value && (
+              <CheckCircle2 className="h-5 w-5 mx-auto mt-2 text-primary" />
             )}
           </div>
         ))}
       </div>
       
-      <div className="bg-muted/50 rounded-lg p-4 text-center">
-        <p className="text-sm text-green-600 font-medium">
-          College Vidya Advantage
+      <div className="bg-blue-50 rounded-lg p-4 text-center">
+        <p className="text-sm text-blue-600 font-medium">
+          CollegeConcierge Advantage
         </p>
         <p className="text-sm">
           Free access to sample question papers & notes!
@@ -683,24 +704,27 @@ const ScoreStep = ({ selectedValue, onChange }) => {
             key={option.value}
             className={`relative border rounded-lg p-4 cursor-pointer hover:border-primary transition-colors min-w-[140px] text-center ${
               selectedValue === option.value ? 'border-primary bg-primary/10' : ''
-            } ${option.recommended ? 'border-green-500' : ''}`}
+            } ${option.recommended ? 'border-indigo-500' : ''}`}
             onClick={() => onChange(option.value)}
           >
             <div className="font-medium">{option.label}</div>
             {option.recommended && (
               <span className="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-xs text-white">
-                  ❤️
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500 text-xs text-white">
+                  <Award className="h-3 w-3" />
                 </span>
               </span>
+            )}
+            {selectedValue === option.value && (
+              <CheckCircle2 className="h-5 w-5 mx-auto mt-2 text-primary" />
             )}
           </div>
         ))}
       </div>
       
-      <div className="bg-muted/50 rounded-lg p-4 text-center">
-        <p className="text-sm text-green-600 font-medium">
-          College Vidya Advantage
+      <div className="bg-blue-50 rounded-lg p-4 text-center">
+        <p className="text-sm text-blue-600 font-medium">
+          CollegeConcierge Advantage
         </p>
         <p className="text-sm">
           Your CV will be shared with 200+ companies post completion of the course!
@@ -728,24 +752,27 @@ const CareerGoalStep = ({ selectedValue, onChange }) => {
             key={option.value}
             className={`relative border rounded-lg p-4 cursor-pointer hover:border-primary transition-colors min-w-[100px] text-center ${
               selectedValue === option.value ? 'border-primary bg-primary/10' : ''
-            } ${option.recommended ? 'border-green-500' : ''}`}
+            } ${option.recommended ? 'border-indigo-500' : ''}`}
             onClick={() => onChange(option.value)}
           >
             <div className="font-medium">{option.label}</div>
             {option.recommended && (
               <span className="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-xs text-white">
-                  ❤️
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500 text-xs text-white">
+                  <Award className="h-3 w-3" />
                 </span>
               </span>
+            )}
+            {selectedValue === option.value && (
+              <CheckCircle2 className="h-5 w-5 mx-auto mt-2 text-primary" />
             )}
           </div>
         ))}
       </div>
       
-      <div className="bg-muted/50 rounded-lg p-4 text-center">
-        <p className="text-sm text-green-600 font-medium">
-          College Vidya Advantage
+      <div className="bg-blue-50 rounded-lg p-4 text-center">
+        <p className="text-sm text-blue-600 font-medium">
+          CollegeConcierge Advantage
         </p>
         <p className="text-sm">
           Telling you what your batchmates doing along with this course!
@@ -767,152 +794,4 @@ const ScholarshipStep = ({ selectedValue, onChange }) => {
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-6 text-center">
-        Do you belong to any one of the categories? (Special scholarship available)
-      </h2>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        {options.map((option) => (
-          <div
-            key={option.value}
-            className={`relative border rounded-lg p-4 cursor-pointer hover:border-primary transition-colors text-center ${
-              selectedValue === option.value ? 'border-primary bg-primary/10' : ''
-            } ${option.recommended ? 'border-green-500' : ''}`}
-            onClick={() => onChange(option.value)}
-          >
-            <div className="font-medium">{option.label}</div>
-            {option.recommended && (
-              <span className="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-xs text-white">
-                  ❤️
-                </span>
-              </span>
-            )}
-          </div>
-        ))}
-      </div>
-      
-      <div className="bg-muted/50 rounded-lg p-4 text-center">
-        <p className="text-sm text-green-600 font-medium">
-          College Vidya Advantage
-        </p>
-        <p className="text-sm">
-          Ensured timely delivery of services by course providers!
-        </p>
-      </div>
-    </div>
-  );
-};
-
-// Fixed UserDetailsStep with proper TypeScript typing
-const UserDetailsStep = ({ 
-  userDetails, 
-  onChange 
-}: { 
-  userDetails: UserDetails; 
-  onChange: (field: keyof UserDetails, value: string) => void 
-}) => {
-  return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-6 text-center">
-        Let's know each other better
-      </h2>
-      
-      <div className="text-center mb-6">
-        <p className="font-medium">Compare & Apply from 100+</p>
-        <div className="flex justify-center gap-2 mt-2 mb-4">
-          <img src="https://via.placeholder.com/80x40?text=Univ1" alt="University" className="h-10 border rounded" />
-          <img src="https://via.placeholder.com/80x40?text=Univ2" alt="University" className="h-10 border rounded" />
-          <img src="https://via.placeholder.com/80x40?text=Univ3" alt="University" className="h-10 border rounded" />
-        </div>
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <label htmlFor="fullName" className="block text-sm font-medium">Full Name</label>
-          <input
-            id="fullName"
-            type="text"
-            className="w-full p-2 border rounded-md"
-            value={userDetails.fullName || ''}
-            onChange={(e) => onChange('fullName', e.target.value)}
-            placeholder="Your full name"
-          />
-        </div>
-        
-        <div className="space-y-2">
-          <label htmlFor="gender" className="block text-sm font-medium">Gender</label>
-          <select
-            id="gender"
-            className="w-full p-2 border rounded-md"
-            value={userDetails.gender || ''}
-            onChange={(e) => onChange('gender', e.target.value)}
-          >
-            <option value="">Select gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-            <option value="prefer_not_to_say">Prefer not to say</option>
-          </select>
-        </div>
-        
-        <div className="space-y-2">
-          <label htmlFor="email" className="block text-sm font-medium">Email Address</label>
-          <input
-            id="email"
-            type="email"
-            className="w-full p-2 border rounded-md"
-            value={userDetails.email || ''}
-            onChange={(e) => onChange('email', e.target.value)}
-            placeholder="you@example.com"
-          />
-        </div>
-        
-        <div className="space-y-2">
-          <label htmlFor="mobile" className="block text-sm font-medium">Mobile Number</label>
-          <div className="flex">
-            <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-l-md">
-              +91
-            </span>
-            <input
-              id="mobile"
-              type="tel"
-              className="w-full p-2 border border-l-0 rounded-r-md"
-              value={userDetails.mobile || ''}
-              onChange={(e) => onChange('mobile', e.target.value)}
-              placeholder="10-digit mobile number"
-            />
-          </div>
-        </div>
-        
-        <div className="space-y-2">
-          <label htmlFor="state" className="block text-sm font-medium">State</label>
-          <input
-            id="state"
-            type="text"
-            className="w-full p-2 border rounded-md"
-            value={userDetails.state || ''}
-            onChange={(e) => onChange('state', e.target.value)}
-            placeholder="Your state"
-          />
-        </div>
-        
-        <div className="space-y-2">
-          <label htmlFor="city" className="block text-sm font-medium">City</label>
-          <input
-            id="city"
-            type="text"
-            className="w-full p-2 border rounded-md"
-            value={userDetails.city || ''}
-            onChange={(e) => onChange('city', e.target.value)}
-            placeholder="Your city"
-          />
-        </div>
-      </div>
-      
-      <div className="mt-6 text-sm text-center text-muted-foreground">
-        By submitting, you agree with our <a href="#" className="underline">Terms & Conditions</a> and <a href="#" className="underline">Privacy Policy</a>.
-      </div>
-    </div>
-  );
-};
+      <h2 className="text-2
