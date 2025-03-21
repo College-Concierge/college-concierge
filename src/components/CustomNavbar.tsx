@@ -92,7 +92,7 @@ const CustomNavbar = () => {
           <Button size="sm" className="bg-gradient-to-r from-purple-600 to-blue-500 text-white hover:from-purple-700 hover:to-blue-600" asChild>
             <Link to="/recommendations" className="flex items-center gap-1.5">
               <Sparkles className="h-3.5 w-3.5" />
-              Find Your Match
+              Find Your Perfect University with AI in 2 min
             </Link>
           </Button>
           
