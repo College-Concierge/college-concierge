@@ -794,4 +794,4 @@ const ScholarshipStep = ({ selectedValue, onChange }) => {
 
   return (
     <div>
-      <h2 className="
+      <h2 className="text-2
