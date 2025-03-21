@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Sparkles, CheckCircle2, BookOpen, Clock, Coins, Briefcase, GraduationCap, Medal, Building, School, Award } from 'lucide-react';
@@ -794,4 +795,135 @@ const ScholarshipStep = ({ selectedValue, onChange }) => {
 
   return (
     <div>
-      <h2 className="text-2
+      <h2 className="text-2xl font-semibold mb-6 text-center">
+        Do you fall under any scholarship category?
+      </h2>
+      
+      <div className="flex flex-wrap justify-center gap-4 mb-8">
+        {options.map((option) => (
+          <div
+            key={option.value}
+            className={`relative border rounded-lg p-4 cursor-pointer hover:border-primary transition-colors min-w-[140px] text-center ${
+              selectedValue === option.value ? 'border-primary bg-primary/10' : ''
+            } ${option.recommended ? 'border-indigo-500' : ''}`}
+            onClick={() => onChange(option.value)}
+          >
+            <div className="font-medium">{option.label}</div>
+            {option.recommended && (
+              <span className="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500 text-xs text-white">
+                  <Award className="h-3 w-3" />
+                </span>
+              </span>
+            )}
+            {selectedValue === option.value && (
+              <CheckCircle2 className="h-5 w-5 mx-auto mt-2 text-primary" />
+            )}
+          </div>
+        ))}
+      </div>
+      
+      <div className="bg-blue-50 rounded-lg p-4 text-center">
+        <p className="text-sm text-blue-600 font-medium">
+          CollegeConcierge Advantage
+        </p>
+        <p className="text-sm">
+          Get scholarship assistance and application help from our team!
+        </p>
+      </div>
+    </div>
+  );
+};
+
+const UserDetailsStep = ({ userDetails, onChange }) => {
+  return (
+    <div>
+      <h2 className="text-2xl font-semibold mb-6 text-center">
+        Almost done! Please provide your details
+      </h2>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <label htmlFor="fullName" className="text-sm font-medium">Full Name</label>
+          <input
+            id="fullName"
+            type="text"
+            className="w-full p-2 border rounded-md"
+            value={userDetails.fullName || ''}
+            onChange={(e) => onChange('fullName', e.target.value)}
+            placeholder="Your full name"
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <label htmlFor="gender" className="text-sm font-medium">Gender</label>
+          <select
+            id="gender"
+            className="w-full p-2 border rounded-md"
+            value={userDetails.gender || ''}
+            onChange={(e) => onChange('gender', e.target.value)}
+          >
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div className="space-y-2">
+          <label htmlFor="email" className="text-sm font-medium">Email</label>
+          <input
+            id="email"
+            type="email"
+            className="w-full p-2 border rounded-md"
+            value={userDetails.email || ''}
+            onChange={(e) => onChange('email', e.target.value)}
+            placeholder="Your email address"
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <label htmlFor="mobile" className="text-sm font-medium">Mobile Number</label>
+          <input
+            id="mobile"
+            type="tel"
+            className="w-full p-2 border rounded-md"
+            value={userDetails.mobile || ''}
+            onChange={(e) => onChange('mobile', e.target.value)}
+            placeholder="Your mobile number"
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <label htmlFor="state" className="text-sm font-medium">State</label>
+          <input
+            id="state"
+            type="text"
+            className="w-full p-2 border rounded-md"
+            value={userDetails.state || ''}
+            onChange={(e) => onChange('state', e.target.value)}
+            placeholder="Your state"
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <label htmlFor="city" className="text-sm font-medium">City</label>
+          <input
+            id="city"
+            type="text"
+            className="w-full p-2 border rounded-md"
+            value={userDetails.city || ''}
+            onChange={(e) => onChange('city', e.target.value)}
+            placeholder="Your city"
+          />
+        </div>
+      </div>
+      
+      <div className="mt-4 text-center">
+        <p className="text-sm text-muted-foreground">
+          Your information will be used to contact you about your recommendations and is stored securely.
+        </p>
+      </div>
+    </div>
+  );
+};
