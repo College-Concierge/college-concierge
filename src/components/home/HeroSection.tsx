@@ -56,7 +56,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative bg-gradient-to-r from-primary/90 to-primary py-24 px-4 md:px-8 overflow-hidden">
+    <section className="relative bg-gradient-to-r from-primary/90 to-primary pt-8 pb-16 px-4 overflow-hidden">
       <motion.div 
         className="max-w-6xl mx-auto text-center relative z-10"
         variants={containerVariants}
@@ -64,14 +64,14 @@ const HeroSection = () => {
         animate="visible"
       >
         <motion.h1 
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4"
           variants={itemVariants}
         >
           Find Your Perfect College Journey
         </motion.h1>
         
         <motion.p 
-          className="text-base sm:text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto"
+          className="text-sm sm:text-base md:text-lg text-white/90 mb-6 max-w-3xl mx-auto px-1"
           variants={itemVariants}
         >
           Discover top universities and courses across India. Make informed decisions about your education with comprehensive data and reviews.
@@ -89,14 +89,18 @@ const HeroSection = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <Button type="submit" size="lg" className="h-12 px-8 bg-accent hover:bg-accent/90 text-white">
+          <Button 
+            type="submit" 
+            size={null}
+            className="h-12 px-4 sm:px-8 bg-[#FF5722] hover:bg-[#FF5722]/90 text-white w-full sm:w-auto"
+          >
             <Search className="mr-2 h-5 w-5" />
             Search
           </Button>
         </motion.form>
 
         <motion.div 
-          className="mt-12 flex flex-wrap justify-center gap-3"
+          className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2"
           variants={itemVariants}
         >
           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/20 text-white">
@@ -108,14 +112,14 @@ const HeroSection = () => {
           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/20 text-white">
             Real Student Reviews
           </span>
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/20 text-white">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/20 text-white whitespace-nowrap">
             AI-Powered Recommendations
           </span>
         </motion.div>
       </motion.div>
       
       {/* Animated wave background */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 overflow-hidden">
+      <div className="absolute bottom-0 left-0 right-0 h-12 sm:h-16 overflow-hidden">
         <motion.svg 
           className="absolute bottom-0" 
           xmlns="http://www.w3.org/2000/svg" 

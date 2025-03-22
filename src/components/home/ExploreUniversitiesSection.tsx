@@ -23,13 +23,13 @@ const ExploreUniversitiesSection = () => {
   } = useUniversitySearch();
 
   return (
-    <SectionContainer className="bg-background" id="explore-universities">
+    <SectionContainer className="bg-background py-10 sm:py-16" id="explore-universities">
       <SectionHeader 
         title="Explore Universities"
         description="Discover top-ranked universities across India and find your perfect match with our comprehensive database and advanced filters."
       />
       
-      <div className="flex flex-col space-y-8">
+      <div className="flex flex-col space-y-6 sm:space-y-8">
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
           <SearchInput
             value={searchTerm}
@@ -43,20 +43,20 @@ const ExploreUniversitiesSection = () => {
             onValueChange={(value) => setSortBy(value as 'popular' | 'top-ranked')} 
             className="w-full md:w-auto"
           >
-            <TabsList>
-              <TabsTrigger value="popular">Popular</TabsTrigger>
-              <TabsTrigger value="top-ranked">Top Ranked</TabsTrigger>
+            <TabsList className="w-full justify-center md:w-auto">
+              <TabsTrigger value="popular" className="flex-1 md:flex-auto">Popular</TabsTrigger>
+              <TabsTrigger value="top-ranked" className="flex-1 md:flex-auto">Top Ranked</TabsTrigger>
             </TabsList>
           </Tabs>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[400px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 min-h-[400px]">
           {loading ? (
             // Loading placeholders
             Array.from({ length: 6 }).map((_, index) => (
               <div key={index} className="h-full">
                 <div className="border rounded-lg h-full animate-pulse bg-muted/30">
-                  <div className="h-48 rounded-t-lg bg-muted"></div>
+                  <div className="h-36 sm:h-48 rounded-t-lg bg-muted"></div>
                   <div className="p-4 space-y-3">
                     <div className="h-4 bg-muted rounded w-3/4"></div>
                     <div className="h-4 bg-muted rounded w-1/2"></div>
@@ -70,7 +70,7 @@ const ExploreUniversitiesSection = () => {
               </div>
             ))
           ) : isEmptyResult ? (
-            <div className="col-span-1 md:col-span-2 lg:col-span-3 py-12 text-center">
+            <div className="col-span-1 sm:col-span-2 lg:col-span-3 py-12 text-center">
               <p className="text-muted-foreground">No universities found matching your search criteria.</p>
               <Button 
                 variant="outline" 
@@ -87,9 +87,9 @@ const ExploreUniversitiesSection = () => {
           )}
         </div>
         
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-4 sm:mt-8">
           <Link to="/prototype/filters">
-            <Button size="lg" className="gap-2">
+            <Button size="lg" className="gap-2 w-full sm:w-auto">
               Explore All Universities
               <ChevronRight className="h-4 w-4" />
             </Button>
