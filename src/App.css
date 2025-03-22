@@ -1,8 +1,39 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+:root {
+  --college-primary: #1A5741; /* Dark green from the logo */
+  --college-secondary: #FBCC33; /* Gold from the logo */
+  --college-dark: #001A41; /* Dark blue from the logo */
+}
+
+.college-text-primary {
+  color: var(--college-primary);
+}
+
+.college-text-secondary {
+  color: var(--college-secondary);
+}
+
+.college-text-dark {
+  color: var(--college-dark);
+}
+
+.college-bg-primary {
+  background-color: var(--college-primary);
+}
+
+.college-bg-secondary {
+  background-color: var(--college-secondary);
+}
+
+.college-bg-dark {
+  background-color: var(--college-dark);
 }
 
 .logo {
@@ -11,9 +42,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }

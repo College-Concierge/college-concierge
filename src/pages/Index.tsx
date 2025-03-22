@@ -11,6 +11,7 @@ import CustomNavbar from "@/components/CustomNavbar";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ExploreUniversitiesSection from "@/components/home/ExploreUniversitiesSection";
 import { toast } from "sonner";
+import "@/App.css";
 
 const Index = () => {
   const [hasVisited, setHasVisited] = useState(false);

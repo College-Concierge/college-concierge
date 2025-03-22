@@ -17,16 +17,16 @@ const CustomNavbar = () => {
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2">
             <motion.div 
-              className="h-8 w-8 overflow-hidden rounded-full"
+              className="h-10 w-10 overflow-hidden rounded-md"
               whileHover={{ scale: 1.05 }}
             >
               <img 
-                src="/lovable-uploads/e70a2275-6ac4-417c-88ea-fe397dca01e0.png" 
+                src="/lovable-uploads/26fa40a3-5d48-46fc-9c60-d39b23278302.png" 
                 alt="College Concierge Logo" 
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain"
               />
             </motion.div>
-            <span className="font-bold hidden sm:inline-block">CollegeConcierge</span>
+            <span className="font-bold hidden sm:inline-block text-[#1A5741]">College Concierge</span>
           </Link>
         </div>
         

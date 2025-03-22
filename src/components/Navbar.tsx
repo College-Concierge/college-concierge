@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
@@ -57,10 +56,14 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link
               to="/"
-              className="flex items-center gap-2 text-xl font-bold text-primary"
+              className="flex items-center gap-2 text-xl font-bold"
             >
-              <GraduationCap className="h-8 w-8" />
-              <span>EduGuide</span>
+              <img 
+                src="/lovable-uploads/26fa40a3-5d48-46fc-9c60-d39b23278302.png" 
+                alt="College Concierge Logo" 
+                className="h-10 w-10 object-contain"
+              />
+              <span className="text-[#1A5741]">College Concierge</span>
             </Link>
           </div>
 

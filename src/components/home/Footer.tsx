@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react";
@@ -10,7 +9,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Column 1: Logo and About */}
           <div className="col-span-1 md:col-span-1">
-            <h3 className="text-xl font-bold mb-4">CollegeConcierge</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <img 
+                src="/lovable-uploads/26fa40a3-5d48-46fc-9c60-d39b23278302.png" 
+                alt="College Concierge Logo" 
+                className="h-10 w-10 object-contain"
+              />
+              <h3 className="text-xl font-bold text-[#1A5741]">College Concierge</h3>
+            </div>
             <p className="text-muted-foreground mb-4">
               Your trusted guide to finding the perfect university and course in India.
             </p>
