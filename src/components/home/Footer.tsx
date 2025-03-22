@@ -12,9 +12,9 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-1 text-center sm:text-left">
             <div className="flex items-center gap-3 mb-4 justify-center sm:justify-start">
               <img 
-                src="/lovable-uploads/6ebd9cc3-0802-4044-bd6c-018130e6c2e1.png" 
+                src="/lovable-uploads/7b0e68a7-4ac0-4904-a6c7-d1d87a772930.png" 
                 alt="College Concierge Logo" 
-                className="h-10 w-10 object-contain"
+                className="h-12 w-auto object-contain"
               />
               <h3 className="text-xl font-bold text-[#1A5741]">College Concierge</h3>
             </div>

@@ -10,10 +10,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const CustomNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,20 +28,20 @@ const CustomNavbar = () => {
 
   return (
     <header className={`sticky top-0 z-40 w-full border-b ${isScrolled ? 'bg-background/95' : 'bg-background'} backdrop-blur transition-colors duration-200`}>
-      <div className="flex h-16 items-center justify-between px-4 md:px-6">
+      <div className="container flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2">
             <motion.div 
-              className="h-9 w-9 overflow-hidden rounded-md"
+              className="h-10 w-auto overflow-hidden rounded-md"
               whileHover={{ scale: 1.05 }}
             >
               <img 
-                src="/lovable-uploads/6ebd9cc3-0802-4044-bd6c-018130e6c2e1.png" 
+                src="/lovable-uploads/7b0e68a7-4ac0-4904-a6c7-d1d87a772930.png" 
                 alt="College Concierge Logo" 
-                className="h-full w-full object-contain"
+                className="h-full w-auto object-contain"
               />
             </motion.div>
-            <span className="font-bold text-base text-[#1A5741]">College Concierge</span>
+            <span className="font-bold text-base sm:text-lg text-[#1A5741] hidden sm:inline">College Concierge</span>
           </Link>
         </div>
         
@@ -108,13 +110,13 @@ const CustomNavbar = () => {
         <div className="flex items-center gap-2">
           {/* AI Recommendations Button */}
           <Button 
-            size="sm"
+            size={isMobile ? "sm" : "default"}
             className="bg-gradient-to-r from-purple-600 to-blue-500 text-white hover:from-purple-700 hover:to-blue-600 font-medium shadow-md hover:shadow-lg transition-all px-2 sm:px-3" 
             asChild
           >
             <Link to="/recommendations" className="flex items-center gap-1">
               <Sparkles className="h-3.5 w-3.5" />
-              <span className="text-xs sm:text-sm">AI College Finder</span>
+              <span className={isMobile ? "hidden" : "inline-block"}>AI College Finder</span>
             </Link>
           </Button>
           

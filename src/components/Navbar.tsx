@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
@@ -59,11 +60,11 @@ const Navbar = () => {
               className="flex items-center gap-2 text-xl font-bold"
             >
               <img 
-                src="/lovable-uploads/26fa40a3-5d48-46fc-9c60-d39b23278302.png" 
+                src="/lovable-uploads/7b0e68a7-4ac0-4904-a6c7-d1d87a772930.png" 
                 alt="College Concierge Logo" 
-                className="h-10 w-10 object-contain"
+                className="h-10 w-auto object-contain"
               />
-              <span className="text-[#1A5741]">College Concierge</span>
+              <span className="text-[#1A5741] hidden sm:inline">College Concierge</span>
             </Link>
           </div>
 

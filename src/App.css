@@ -51,6 +51,30 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+/* Logo specific styles for better responsiveness */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.college-logo {
+  height: auto;
+  width: auto;
+  max-height: 3rem;
+  object-fit: contain;
+}
+
+@media (max-width: 640px) {
+  .college-logo {
+    max-height: 2.5rem;
+  }
+  
+  .logo-text {
+    font-size: 1rem;
+  }
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
