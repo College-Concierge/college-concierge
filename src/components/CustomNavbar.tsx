@@ -32,13 +32,14 @@ const CustomNavbar = () => {
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2">
             <motion.div 
-              className="rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center h-10 w-10"
+              className="rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center h-12 w-12"
               whileHover={{ scale: 1.05 }}
             >
               <img 
-                src="/lovable-uploads/6e60cc6f-3260-4b0d-a459-6dcda5dbfa07.png" 
+                src="/lovable-uploads/2de81829-008e-4a99-a35a-b9d4a80d5e1b.png" 
                 alt="College Concierge Logo" 
-                className="h-10 w-10 object-contain p-0.5"
+                className="h-11 w-11 object-cover p-0.5"
+                loading="eager"
               />
             </motion.div>
             <span className="font-bold text-base sm:text-lg text-[#1A5741] hidden sm:inline">College Concierge</span>

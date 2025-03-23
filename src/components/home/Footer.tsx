@@ -11,11 +11,12 @@ const Footer = () => {
           {/* Column 1: Logo and About */}
           <div className="col-span-1 md:col-span-1 text-center sm:text-left">
             <div className="flex items-center gap-3 mb-4 justify-center sm:justify-start">
-              <div className="rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center h-12 w-12">
+              <div className="rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center h-14 w-14">
                 <img 
-                  src="/lovable-uploads/6e60cc6f-3260-4b0d-a459-6dcda5dbfa07.png" 
+                  src="/lovable-uploads/2de81829-008e-4a99-a35a-b9d4a80d5e1b.png" 
                   alt="College Concierge Logo" 
-                  className="h-12 w-12 object-contain p-0.5"
+                  className="h-14 w-14 object-cover p-0.5"
+                  loading="lazy"
                 />
               </div>
               <h3 className="text-xl font-bold text-[#1A5741]">College Concierge</h3>

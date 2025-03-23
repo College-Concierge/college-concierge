@@ -61,9 +61,10 @@ const Navbar = () => {
             >
               <div className="college-logo-wrapper">
                 <img 
-                  src="/lovable-uploads/6e60cc6f-3260-4b0d-a459-6dcda5dbfa07.png" 
+                  src="/lovable-uploads/2de81829-008e-4a99-a35a-b9d4a80d5e1b.png" 
                   alt="College Concierge Logo" 
                   className="college-logo"
+                  loading="eager"
                 />
               </div>
               <span className="text-[#1A5741] hidden sm:inline">College Concierge</span>

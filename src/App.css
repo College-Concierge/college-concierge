@@ -58,21 +58,25 @@
   gap: 0.5rem;
 }
 
+/* Improved college logo styles for better clarity */
 .college-logo {
   height: auto;
-  max-height: 4rem;
-  max-width: 4rem;
+  max-height: 4.5rem;
+  max-width: 4.5rem;
   width: auto;
-  object-fit: contain;
+  object-fit: cover; /* Changed from contain to cover for better clarity */
   border-radius: 50%;
   background-color: white;
-  padding: 0.25rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 0.15rem; /* Reduced padding to show more of the logo */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s ease;
+  image-rendering: -webkit-optimize-contrast; /* Improves image sharpness in webkit browsers */
+  image-rendering: crisp-edges; /* Modern approach for crisp images */
 }
 
 .college-logo:hover {
   transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .college-logo-wrapper {
@@ -86,19 +90,21 @@
 
 /* College logo icon only (for very small screens) */
 .college-logo-icon-only {
-  height: 2.5rem;
-  width: 2.5rem;
-  object-fit: contain;
+  height: 2.75rem;
+  width: 2.75rem;
+  object-fit: cover;
   border-radius: 50%;
   background-color: white;
-  padding: 0.15rem;
+  padding: 0.1rem;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 @media (max-width: 640px) {
   .college-logo {
-    max-height: 3rem;
-    max-width: 3rem;
-    padding: 0.2rem;
+    max-height: 3.5rem;
+    max-width: 3.5rem;
+    padding: 0.1rem;
   }
   
   .logo-text {
@@ -108,9 +114,9 @@
 
 @media (max-width: 480px) {
   .college-logo {
-    max-height: 2.75rem;
-    max-width: 2.75rem;
-    padding: 0.15rem;
+    max-height: 3rem;
+    max-width: 3rem;
+    padding: 0.1rem;
   }
 }
 
