@@ -150,3 +150,13 @@
     padding-right: 1rem;
   }
 }
+
+/* Chatbot mobile styles */
+@media (max-width: 640px) {
+  .chatbot-container {
+    width: calc(100% - 2rem) !important;
+    left: 1rem;
+    right: 1rem;
+    height: 70vh !important;
+  }
+}

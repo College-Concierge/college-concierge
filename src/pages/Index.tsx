@@ -48,7 +48,7 @@ const Index = () => {
         <DocumentationSection />
       </main>
       <Footer />
-      <ChatbotInterface initialOpen={!hasVisited} />
+      <ChatbotInterface initialOpen={false} />
     </div>
   );
 };
