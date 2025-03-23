@@ -59,11 +59,13 @@ const Navbar = () => {
               to="/"
               className="flex items-center gap-2 text-xl font-bold"
             >
-              <img 
-                src="/lovable-uploads/7b0e68a7-4ac0-4904-a6c7-d1d87a772930.png" 
-                alt="College Concierge Logo" 
-                className="h-10 w-auto object-contain"
-              />
+              <div className="college-logo-wrapper">
+                <img 
+                  src="/lovable-uploads/d7951cd3-79df-4182-8c84-ee2c1ba511fe.png" 
+                  alt="College Concierge Logo" 
+                  className="college-logo"
+                />
+              </div>
               <span className="text-[#1A5741] hidden sm:inline">College Concierge</span>
             </Link>
           </div>

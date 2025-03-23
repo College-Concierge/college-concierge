@@ -60,14 +60,30 @@
 
 .college-logo {
   height: auto;
+  max-height: 3.5rem;
+  max-width: 3.5rem;
   width: auto;
-  max-height: 3rem;
   object-fit: contain;
+  border-radius: 50%;
+  background-color: white;
+  padding: 0.25rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.college-logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: white;
 }
 
 @media (max-width: 640px) {
   .college-logo {
-    max-height: 2.5rem;
+    max-height: 2.75rem;
+    max-width: 2.75rem;
+    padding: 0.2rem;
   }
   
   .logo-text {
