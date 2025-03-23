@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { MessageSquare, ArrowRightLeft, Filter, FileText, Users, Map, Layers, ChevronDown, Sparkles } from "lucide-react";
+import { MessageSquare, ArrowRightLeft, Filter, FileText, Users, Map, Layers, ChevronDown, Sparkles, Menu, X } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,27 +9,44 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const CustomNavbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur">
-      <div className="container flex h-16 items-center justify-between">
+    <header className={`sticky top-0 z-40 w-full border-b ${isScrolled ? 'bg-background/95' : 'bg-background'} backdrop-blur transition-colors duration-200`}>
+      <div className="container flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2">
             <motion.div 
-              className="h-8 w-8 overflow-hidden rounded-full"
+              className="rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center h-12 w-12"
               whileHover={{ scale: 1.05 }}
             >
               <img 
-                src="/lovable-uploads/e70a2275-6ac4-417c-88ea-fe397dca01e0.png" 
+                src="/lovable-uploads/2de81829-008e-4a99-a35a-b9d4a80d5e1b.png" 
                 alt="College Concierge Logo" 
-                className="h-full w-full object-cover"
+                className="h-11 w-11 object-cover p-0.5"
+                loading="eager"
               />
             </motion.div>
-            <span className="font-bold hidden sm:inline-block">CollegeConcierge</span>
+            <span className="font-bold text-base sm:text-lg text-[#1A5741] hidden sm:inline">College Concierge</span>
           </Link>
         </div>
         
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           <Link to="/" className="text-sm font-medium transition-colors hover:text-primary">
             Home
@@ -92,15 +109,15 @@ const CustomNavbar = () => {
         </nav>
         
         <div className="flex items-center gap-2">
-          {/* AI Recommendations Button - Always visible */}
+          {/* AI Recommendations Button */}
           <Button 
-            size="sm" 
-            className="bg-gradient-to-r from-purple-600 to-blue-500 text-white hover:from-purple-700 hover:to-blue-600 font-medium shadow-md hover:shadow-lg transition-all" 
+            size={isMobile ? "sm" : "default"}
+            className="bg-gradient-to-r from-purple-600 to-blue-500 text-white hover:from-purple-700 hover:to-blue-600 font-medium shadow-md hover:shadow-lg transition-all px-2 sm:px-3" 
             asChild
           >
             <Link to="/recommendations" className="flex items-center gap-1">
               <Sparkles className="h-3.5 w-3.5" />
-              AI College Finder
+              <span className={isMobile ? "hidden" : "inline-block"}>AI College Finder</span>
             </Link>
           </Button>
           
@@ -111,32 +128,63 @@ const CustomNavbar = () => {
             <Link to="/login">Login</Link>
           </Button>
           
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
-                <ChevronDown className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem asChild>
-                <Link to="/">Home</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/prototype/chatbot">AI Chatbot</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/prototype/comparison">Comparison Tool</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/prototype/filters">Advanced Filters</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/project-documentation">Documentation</Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* Mobile Menu Button */}
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="md:hidden"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden border-t border-border py-3 px-4 bg-background/95 backdrop-blur">
+          <nav className="flex flex-col space-y-3">
+            <Link to="/" className="px-2 py-1.5 rounded-md text-sm font-medium hover:bg-muted" onClick={() => setIsMobileMenuOpen(false)}>
+              Home
+            </Link>
+            
+            <div className="px-2 py-1 text-sm font-medium">Documentation</div>
+            <div className="pl-4 flex flex-col space-y-2">
+              <Link to="/user-personas" className="px-2 py-1 text-sm rounded-md hover:bg-muted flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
+                <Users className="h-4 w-4" /> User Personas
+              </Link>
+              <Link to="/user-journeys" className="px-2 py-1 text-sm rounded-md hover:bg-muted flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
+                <Map className="h-4 w-4" /> User Journeys
+              </Link>
+              <Link to="/wireframes" className="px-2 py-1 text-sm rounded-md hover:bg-muted flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
+                <Layers className="h-4 w-4" /> Wireframes
+              </Link>
+              <Link to="/project-documentation" className="px-2 py-1 text-sm rounded-md hover:bg-muted flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
+                <FileText className="h-4 w-4" /> Project Documentation
+              </Link>
+            </div>
+            
+            <div className="px-2 py-1 text-sm font-medium">Prototypes</div>
+            <div className="pl-4 flex flex-col space-y-2">
+              <Link to="/prototype/chatbot" className="px-2 py-1 text-sm rounded-md hover:bg-muted flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
+                <MessageSquare className="h-4 w-4" /> AI Chatbot
+              </Link>
+              <Link to="/prototype/comparison" className="px-2 py-1 text-sm rounded-md hover:bg-muted flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
+                <ArrowRightLeft className="h-4 w-4" /> Comparison Tool
+              </Link>
+              <Link to="/prototype/filters" className="px-2 py-1 text-sm rounded-md hover:bg-muted flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
+                <Filter className="h-4 w-4" /> Advanced Filters
+              </Link>
+            </div>
+            
+            <div className="flex items-center space-x-2 pt-2">
+              <Button variant="outline" size="sm" asChild className="flex-1" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link to="/signup">Sign Up</Link>
+              </Button>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };

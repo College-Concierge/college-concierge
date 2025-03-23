@@ -17,7 +17,7 @@ const SectionContainer = ({
   return (
     <Component 
       id={id}
-      className={`py-16 px-4 md:px-8 ${className}`}
+      className={`py-10 sm:py-16 px-4 sm:px-6 md:px-8 ${className}`}
     >
       <div className="max-w-7xl mx-auto">
         {children}

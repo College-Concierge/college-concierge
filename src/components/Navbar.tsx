@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
 import { useState, useEffect } from "react";
-import { Search, Menu, X, GraduationCap, User } from "lucide-react";
+import { Search, Menu, X, User } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -57,10 +57,17 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link
               to="/"
-              className="flex items-center gap-2 text-xl font-bold text-primary"
+              className="flex items-center gap-2 text-xl font-bold"
             >
-              <GraduationCap className="h-8 w-8" />
-              <span>EduGuide</span>
+              <div className="college-logo-wrapper">
+                <img 
+                  src="/lovable-uploads/2de81829-008e-4a99-a35a-b9d4a80d5e1b.png" 
+                  alt="College Concierge Logo" 
+                  className="college-logo"
+                  loading="eager"
+                />
+              </div>
+              <span className="text-[#1A5741] hidden sm:inline">College Concierge</span>
             </Link>
           </div>
 

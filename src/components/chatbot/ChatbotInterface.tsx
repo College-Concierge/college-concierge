@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Minimize2, X, Bot, User, Loader2, Settings, Sparkles, Paperclip, Mic, Clock, File, Plus, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -15,6 +14,7 @@ import {
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { toast } from 'sonner';
 import { Badge } from '@/components/ui/badge';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 type Message = {
   id: string;
@@ -56,6 +56,7 @@ interface ChatbotInterfaceProps {
 }
 
 const ChatbotInterface: React.FC<ChatbotInterfaceProps> = ({ initialOpen = false }) => {
+  const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(initialOpen);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>(initialMessages);
@@ -248,13 +249,13 @@ const ChatbotInterface: React.FC<ChatbotInterfaceProps> = ({ initialOpen = false
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-20 right-4 z-40 w-full sm:w-96 shadow-xl"
+            className={`fixed ${isMobile ? 'bottom-20 left-4 right-4' : 'bottom-20 right-4 w-full sm:w-96'} z-40 shadow-xl`}
             initial={{ y: 20, opacity: 0 }}
             animate={{ 
               y: 0, 
               opacity: 1,
-              height: isMinimized ? 'auto' : 'calc(100vh - 8rem)',
-              maxHeight: isMinimized ? 'auto' : '600px',
+              height: isMinimized ? 'auto' : isMobile ? 'calc(70vh)' : 'calc(100vh - 8rem)',
+              maxHeight: isMinimized ? 'auto' : isMobile ? '550px' : '600px',
             }}
             exit={{ y: 20, opacity: 0 }}
             transition={{ duration: 0.3 }}
