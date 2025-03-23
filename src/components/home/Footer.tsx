@@ -13,7 +13,7 @@ const Footer = () => {
             <div className="flex items-center gap-3 mb-4 justify-center sm:justify-start">
               <div className="rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center h-12 w-12">
                 <img 
-                  src="/lovable-uploads/d7951cd3-79df-4182-8c84-ee2c1ba511fe.png" 
+                  src="/lovable-uploads/6e60cc6f-3260-4b0d-a459-6dcda5dbfa07.png" 
                   alt="College Concierge Logo" 
                   className="h-12 w-12 object-contain p-0.5"
                 />

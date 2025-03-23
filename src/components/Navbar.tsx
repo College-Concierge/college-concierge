@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
 import { useState, useEffect } from "react";
-import { Search, Menu, X, GraduationCap, User } from "lucide-react";
+import { Search, Menu, X, User } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -61,7 +61,7 @@ const Navbar = () => {
             >
               <div className="college-logo-wrapper">
                 <img 
-                  src="/lovable-uploads/d7951cd3-79df-4182-8c84-ee2c1ba511fe.png" 
+                  src="/lovable-uploads/6e60cc6f-3260-4b0d-a459-6dcda5dbfa07.png" 
                   alt="College Concierge Logo" 
                   className="college-logo"
                 />

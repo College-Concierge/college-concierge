@@ -60,14 +60,19 @@
 
 .college-logo {
   height: auto;
-  max-height: 3.5rem;
-  max-width: 3.5rem;
+  max-height: 4rem;
+  max-width: 4rem;
   width: auto;
   object-fit: contain;
   border-radius: 50%;
   background-color: white;
   padding: 0.25rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.college-logo:hover {
+  transform: scale(1.05);
 }
 
 .college-logo-wrapper {
@@ -79,15 +84,33 @@
   background-color: white;
 }
 
+/* College logo icon only (for very small screens) */
+.college-logo-icon-only {
+  height: 2.5rem;
+  width: 2.5rem;
+  object-fit: contain;
+  border-radius: 50%;
+  background-color: white;
+  padding: 0.15rem;
+}
+
 @media (max-width: 640px) {
   .college-logo {
-    max-height: 2.75rem;
-    max-width: 2.75rem;
+    max-height: 3rem;
+    max-width: 3rem;
     padding: 0.2rem;
   }
   
   .logo-text {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .college-logo {
+    max-height: 2.75rem;
+    max-width: 2.75rem;
+    padding: 0.15rem;
   }
 }
 
