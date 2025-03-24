@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react";
@@ -13,7 +12,7 @@ const Footer = () => {
             <div className="flex items-center gap-3 mb-4 justify-center sm:justify-start">
               <div className="rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center h-14 w-14">
                 <img 
-                  src="/lovable-uploads/2de81829-008e-4a99-a35a-b9d4a80d5e1b.png" 
+                  src="/lovable-uploads/204a6e1d-8c62-46c0-a118-9bb7b7bb99f7.png" 
                   alt="College Concierge Logo" 
                   className="h-14 w-14 object-cover p-0.5"
                   loading="lazy"
@@ -72,6 +71,7 @@ const Footer = () => {
             </ul>
           </div>
           
+          {/* Rest of the footer columns */}
           {/* Column 3: Resources */}
           <div className="text-center sm:text-left">
             <h3 className="text-lg font-semibold mb-4">Resources</h3>
