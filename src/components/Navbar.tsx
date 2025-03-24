@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
@@ -67,7 +68,7 @@ const Navbar = () => {
                   loading="eager"
                 />
               </div>
-              <span className="text-[#1A5741] hidden sm:inline">College Concierge</span>
+              <span className="text-[#1A5741] hidden sm:inline dark:text-white">College Concierge</span>
             </Link>
           </div>
 
@@ -90,9 +91,11 @@ const Navbar = () => {
           </nav>
 
           <div className="flex items-center gap-4">
+            <ThemeToggle />
+            
             <Link 
               to="/universities" 
-              className="hidden md:flex items-center rounded-full bg-secondary p-2 text-gray-600 hover:text-primary focus-ring"
+              className="hidden md:flex items-center rounded-full bg-secondary p-2 text-gray-600 hover:text-primary focus-ring dark:text-gray-300"
             >
               <Search className="h-5 w-5" />
             </Link>
@@ -138,7 +141,7 @@ const Navbar = () => {
 
             {/* Mobile menu button */}
             <button
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 md:hidden focus-ring"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 md:hidden focus-ring dark:text-gray-300"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
@@ -175,7 +178,7 @@ const Navbar = () => {
             <div className="flex w-full">
               <Link 
                 to="/universities" 
-                className="flex items-center justify-center gap-2 w-full px-3 py-2 rounded-md text-base font-medium bg-secondary/50 text-gray-600 focus-ring"
+                className="flex items-center justify-center gap-2 w-full px-3 py-2 rounded-md text-base font-medium bg-secondary/50 text-gray-600 focus-ring dark:text-gray-300"
               >
                 <Search className="h-4 w-4" />
                 <span>Search Universities</span>

@@ -1,10 +1,11 @@
+
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Facebook, Twitter, Instagram, Linkedin, Github } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-muted/30 py-8 sm:py-12 px-4">
+    <footer className="bg-muted/30 dark:bg-gray-900 py-8 sm:py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {/* Column 1: Logo and About */}
@@ -18,7 +19,7 @@ const Footer = () => {
                   loading="lazy"
                 />
               </div>
-              <h3 className="text-xl font-bold text-[#1A5741]">College Concierge</h3>
+              <h3 className="text-xl font-bold text-[#1A5741] dark:text-white">College Concierge</h3>
             </div>
             <p className="text-muted-foreground mb-4">
               Your trusted guide to finding the perfect university and course in India.
@@ -41,7 +42,7 @@ const Footer = () => {
           
           {/* Column 2: Quick Links */}
           <div className="text-center sm:text-left">
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4 dark:text-white">Quick Links</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-muted-foreground hover:text-primary">
@@ -74,7 +75,7 @@ const Footer = () => {
           {/* Rest of the footer columns */}
           {/* Column 3: Resources */}
           <div className="text-center sm:text-left">
-            <h3 className="text-lg font-semibold mb-4">Resources</h3>
+            <h3 className="text-lg font-semibold mb-4 dark:text-white">Resources</h3>
             <ul className="space-y-2">
               <li>
                 <a href="#" className="text-muted-foreground hover:text-primary">
@@ -101,7 +102,7 @@ const Footer = () => {
           
           {/* Column 4: Contact */}
           <div className="text-center sm:text-left">
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+            <h3 className="text-lg font-semibold mb-4 dark:text-white">Contact Us</h3>
             <ul className="space-y-2">
               <li className="text-muted-foreground">
                 support@collegeconcierge.in
