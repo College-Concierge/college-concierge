@@ -16,6 +16,7 @@ import ComparisonToolPrototype from "./components/comparison/ComparisonToolProto
 import FiltersPrototype from "./components/filters/FiltersPrototype";
 import UniversityDetail from "./pages/UniversityDetail";
 import RecommendationEngine from "./pages/RecommendationEngine";
+import { AuthProvider } from "./context/AuthContext";
 
 // Create a new query client instance
 const queryClient = new QueryClient();
@@ -23,26 +24,28 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/university/:id" element={<UniversityDetail />} />
-            <Route path="/recommendations" element={<RecommendationEngine />} />
-            <Route path="/user-personas" element={<UserPersonas />} />
-            <Route path="/user-journeys" element={<UserJourneys />} />
-            <Route path="/wireframes" element={<Wireframes />} />
-            <Route path="/project-documentation" element={<ProjectDocumentation />} />
-            <Route path="/prototype/chatbot" element={<ChatbotDemo />} />
-            <Route path="/prototype/comparison" element={<ComparisonToolPrototype />} />
-            <Route path="/prototype/filters" element={<FiltersPrototype />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/university/:id" element={<UniversityDetail />} />
+              <Route path="/recommendations" element={<RecommendationEngine />} />
+              <Route path="/user-personas" element={<UserPersonas />} />
+              <Route path="/user-journeys" element={<UserJourneys />} />
+              <Route path="/wireframes" element={<Wireframes />} />
+              <Route path="/project-documentation" element={<ProjectDocumentation />} />
+              <Route path="/prototype/chatbot" element={<ChatbotDemo />} />
+              <Route path="/prototype/comparison" element={<ComparisonToolPrototype />} />
+              <Route path="/prototype/filters" element={<FiltersPrototype />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
     </ThemeProvider>
   </QueryClientProvider>
 );
