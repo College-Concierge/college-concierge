@@ -61,7 +61,7 @@ const Navbar = () => {
             >
               <div className="college-logo-wrapper">
                 <img 
-                  src="/lovable-uploads/2de81829-008e-4a99-a35a-b9d4a80d5e1b.png" 
+                  src="/lovable-uploads/204a6e1d-8c62-46c0-a118-9bb7b7bb99f7.png" 
                   alt="College Concierge Logo" 
                   className="college-logo"
                   loading="eager"
