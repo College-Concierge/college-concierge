@@ -13,7 +13,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
@@ -50,7 +49,7 @@ const Navbar = () => {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
-        isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm dark:bg-gray-900/80" : "bg-transparent"
+        isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm" : "bg-transparent"
       )}
     >
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,7 +67,7 @@ const Navbar = () => {
                   loading="eager"
                 />
               </div>
-              <span className="text-[#1A5741] hidden sm:inline dark:text-white">College Concierge</span>
+              <span className="text-[#1A5741] hidden sm:inline">College Concierge</span>
             </Link>
           </div>
 
@@ -82,7 +81,7 @@ const Navbar = () => {
                   "focus-ring text-sm font-medium transition-colors",
                   location.pathname === item.path
                     ? "text-primary"
-                    : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary"
+                    : "text-gray-600 hover:text-primary"
                 )}
               >
                 {item.label}
@@ -91,11 +90,9 @@ const Navbar = () => {
           </nav>
 
           <div className="flex items-center gap-4">
-            <ThemeToggle />
-            
             <Link 
               to="/universities" 
-              className="hidden md:flex items-center rounded-full bg-secondary p-2 text-gray-600 hover:text-primary focus-ring dark:text-gray-300"
+              className="hidden md:flex items-center rounded-full bg-secondary p-2 text-gray-600 hover:text-primary focus-ring"
             >
               <Search className="h-5 w-5" />
             </Link>
@@ -141,7 +138,7 @@ const Navbar = () => {
 
             {/* Mobile menu button */}
             <button
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 md:hidden focus-ring dark:text-gray-300"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 md:hidden focus-ring"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
@@ -156,7 +153,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-900 shadow-lg">
+        <div className="md:hidden bg-white shadow-lg">
           <div className="px-4 py-3 space-y-3">
             {navItems.map((item) => (
               <Link
@@ -166,19 +163,19 @@ const Navbar = () => {
                   "block px-3 py-2 rounded-md text-base font-medium focus-ring",
                   location.pathname === item.path
                     ? "bg-primary/10 text-primary"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-primary dark:text-gray-300 dark:hover:bg-gray-800"
+                    : "text-gray-600 hover:bg-gray-100 hover:text-primary"
                 )}
               >
                 {item.label}
               </Link>
             ))}
             <div className="pt-2">
-              <div className="border-t border-gray-200 dark:border-gray-700"></div>
+              <div className="border-t border-gray-200"></div>
             </div>
             <div className="flex w-full">
               <Link 
                 to="/universities" 
-                className="flex items-center justify-center gap-2 w-full px-3 py-2 rounded-md text-base font-medium bg-secondary/50 text-gray-600 focus-ring dark:text-gray-300"
+                className="flex items-center justify-center gap-2 w-full px-3 py-2 rounded-md text-base font-medium bg-secondary/50 text-gray-600 focus-ring"
               >
                 <Search className="h-4 w-4" />
                 <span>Search Universities</span>
