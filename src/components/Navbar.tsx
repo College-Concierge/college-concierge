@@ -49,7 +49,7 @@ const Navbar = () => {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
-        isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm dark:bg-gray-900/80" : "bg-transparent"
+        isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm" : "bg-transparent"
       )}
     >
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,7 +81,7 @@ const Navbar = () => {
                   "focus-ring text-sm font-medium transition-colors",
                   location.pathname === item.path
                     ? "text-primary"
-                    : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary"
+                    : "text-gray-600 hover:text-primary"
                 )}
               >
                 {item.label}
@@ -153,7 +153,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-900 shadow-lg">
+        <div className="md:hidden bg-white shadow-lg">
           <div className="px-4 py-3 space-y-3">
             {navItems.map((item) => (
               <Link
@@ -163,14 +163,14 @@ const Navbar = () => {
                   "block px-3 py-2 rounded-md text-base font-medium focus-ring",
                   location.pathname === item.path
                     ? "bg-primary/10 text-primary"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-primary dark:text-gray-300 dark:hover:bg-gray-800"
+                    : "text-gray-600 hover:bg-gray-100 hover:text-primary"
                 )}
               >
                 {item.label}
               </Link>
             ))}
             <div className="pt-2">
-              <div className="border-t border-gray-200 dark:border-gray-700"></div>
+              <div className="border-t border-gray-200"></div>
             </div>
             <div className="flex w-full">
               <Link 
